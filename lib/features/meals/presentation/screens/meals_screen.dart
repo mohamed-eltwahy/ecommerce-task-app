@@ -36,7 +36,7 @@ class MealsScreen extends StatelessWidget {
               return CustomScrollView(
                 slivers: [
                   const SeafoodHeroSection(),
-                  MealsListSection(meals: state.meals),
+                  MealsListSection(meals: state.meals, animationDelayMs: 200),
                 ],
               );
             }

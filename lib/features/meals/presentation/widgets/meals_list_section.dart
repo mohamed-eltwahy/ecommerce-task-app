@@ -5,8 +5,13 @@ import 'grid_meal_card.dart';
 
 class MealsListSection extends StatefulWidget {
   final List<MealEntity> meals;
+  final int animationDelayMs;
 
-  const MealsListSection({super.key, required this.meals});
+  const MealsListSection({
+    super.key,
+    required this.meals,
+    this.animationDelayMs = 150, // Default delay between items
+  });
 
   @override
   State<MealsListSection> createState() => _MealsListSectionState();
@@ -48,7 +53,7 @@ class _MealsListSectionState extends State<MealsListSection>
     _animationController.forward();
 
     for (int i = 0; i < _itemAnimationControllers.length; i++) {
-      Future.delayed(Duration(milliseconds: 100 * i), () {
+      Future.delayed(Duration(milliseconds: widget.animationDelayMs * i), () {
         if (mounted) {
           _itemAnimationControllers[i].forward();
         }

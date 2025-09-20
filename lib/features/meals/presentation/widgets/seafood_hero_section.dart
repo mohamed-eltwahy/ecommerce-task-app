@@ -76,7 +76,7 @@ class SeafoodHeroSection extends StatelessWidget {
 
   Widget _buildBackButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () => {},
       child: Container(
         width: 44.w,
         height: 44.h,
