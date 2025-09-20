@@ -78,8 +78,8 @@ class CartItemCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: 80.w,
-          height: 80.h,
+          width: 100.w,
+          height: 100.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
             color: Colors.grey[100],
@@ -103,8 +103,8 @@ class CartItemCard extends StatelessWidget {
               onRemove();
             },
             child: Container(
-              width: 20.w,
-              height: 20.h,
+              width: 30.w,
+              height: 30.h,
               decoration: BoxDecoration(
                 color: Colors.red.withValues(alpha: 0.8),
                 shape: BoxShape.circle,
@@ -112,7 +112,7 @@ class CartItemCard extends StatelessWidget {
               child: Icon(
                 Icons.delete_outline,
                 color: Colors.white,
-                size: 12.sp,
+                size: 20.sp,
               ),
             ),
           ),
@@ -135,7 +135,7 @@ class CartItemCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 4.h),
-          if (currentItem.selectedOptions.isNotEmpty) ...[
+          if (_hasNonEmptyOptions(currentItem)) ...[
             _buildCustomizationDetails(currentItem),
             SizedBox(height: 4.h),
           ],
@@ -150,16 +150,34 @@ class CartItemCard extends StatelessWidget {
     );
   }
 
+  bool _hasNonEmptyOptions(CartItemModel currentItem) {
+    return currentItem.selectedOptions.entries.any(
+      (entry) => entry.value.isNotEmpty,
+    );
+  }
+
   Widget _buildCustomizationDetails(CartItemModel currentItem) {
+    final nonEmptyOptions = currentItem.selectedOptions.entries
+        .where((entry) => entry.value.isNotEmpty)
+        .toList();
+
+    if (nonEmptyOptions.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: currentItem.selectedOptions.entries
+      children: nonEmptyOptions
           .map((entry) => _buildOptionRow(entry.key, entry.value.join(', ')))
           .toList(),
     );
   }
 
   Widget _buildOptionRow(String label, String value) {
+    if (value.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Padding(
       padding: EdgeInsets.only(bottom: 4.h),
       child: Row(
