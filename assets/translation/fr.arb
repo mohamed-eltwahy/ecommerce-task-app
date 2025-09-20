@@ -1,0 +1,22 @@
+{
+  "@@locale": "fr",
+  
+  "errorFieldRequired": "Ce champ est obligatoire",
+  "errorInvalidName": "Format du nom invalide",
+  "errorInvalidUrl": "URL invalide",
+  "errorInvalidPhoneNumber": "Numéro de téléphone invalide",
+  "errorInvalidEmail": "Adresse e-mail invalide",
+  "errorInvalidPassword": "Le mot de passe doit contenir au moins 8 caractères avec majuscule, minuscule et caractères spéciaux",
+  "errorPasswordMismatch": "Les mots de passe ne correspondent pas",
+  "errorInvalidNumber": "Numéro invalide",
+  "errorInvalidIban": "Format IBAN invalide",
+  "errorInvalidMobileNumber": "Numéro mobile invalide",
+  "errorInvalidStcPayId": "Identifiant STC Pay invalide",
+  "errorInvalidNationalId": "Numéro d'identité nationale invalide",
+  "errorInvalidPassport": "Numéro de passeport invalide",
+
+  "errorPhoneValidation": "Le numéro de téléphone doit commencer par {start} et comporter {length} chiffres.",
+  "errorExperienceRequired": "Vous devez ajouter au moins une expérience.",
+  "errorIdDocumentRequired": "Vous devez téléverser un document d'identité pour vérifier votre identité.",
+  "errorPhotoRequired": "Vous devez téléverser une photo avec un fond blanc."
+}
