@@ -142,72 +142,73 @@ class SeafoodHeroSection extends StatelessWidget {
 
   Widget _buildCircularFeaturedItem() {
     return Positioned(
-      bottom: -40.h,
+      bottom: -50.h,
       left: 0,
       right: 0,
       child: Center(
         child: Container(
-          width: 160.w,
-          height: 160.h,
+          width: 150.w,
+          height: 150.h,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
+
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Colors.white.withValues(alpha: 0.9),
-                Colors.white.withValues(alpha: 0.7),
+                Colors.white.withValues(alpha: 0.25),
+                Colors.white.withValues(alpha: 0.1),
               ],
             ),
             border: Border.all(
-              color: Colors.white.withValues(alpha: 0.8),
-              width: 3.w,
+              color: Colors.white.withValues(alpha: 0.3),
+              width: 1.5.w,
             ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.15),
                 blurRadius: 25,
-                offset: const Offset(0, 12),
-                spreadRadius: 2,
+                offset: const Offset(0, 10),
+                spreadRadius: 0,
               ),
 
               BoxShadow(
-                color: Colors.white.withValues(alpha: 0.5),
-                blurRadius: 10,
-                offset: const Offset(-2, -2),
+                color: Colors.black.withValues(alpha: 0.08),
+                blurRadius: 40,
+                offset: const Offset(0, 20),
                 spreadRadius: -5,
+              ),
+
+              BoxShadow(
+                color: Colors.white.withValues(alpha: 0.6),
+                blurRadius: 6,
+                offset: const Offset(-1, -1),
+                spreadRadius: -8,
               ),
             ],
           ),
           child: Container(
-            margin: EdgeInsets.all(8.w),
+            margin: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withValues(alpha: 0.95),
-                  Colors.grey.shade50,
-                ],
-              ),
+              color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withValues(alpha: 0.1),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                   spreadRadius: 0,
                 ),
               ],
             ),
-            child: ClipOval(
-              child: Container(
-                padding: EdgeInsets.all(2.w),
-                child: ClipOval(
-                  child: AppCachedNetworkImage(
-                    imageUrl: AppImages.seafoodcurvedimag,
-                    fit: BoxFit.cover,
-                  ),
+            padding: EdgeInsets.all(8.w),
+            child: Container(
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(64.r),
+                child: AppCachedNetworkImage(
+                  imageUrl: AppImages.seafoodcurvedimag,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

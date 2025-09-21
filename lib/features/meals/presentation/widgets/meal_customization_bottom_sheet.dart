@@ -208,6 +208,7 @@ class _MealCustomizationBottomSheetState
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
+              AppColors.primary.withValues(alpha: 0.1),
               AppColors.primary.withValues(alpha: 0.2),
               AppColors.primary.withValues(alpha: 0.4),
               AppColors.primary,
