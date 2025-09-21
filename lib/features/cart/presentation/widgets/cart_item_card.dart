@@ -63,6 +63,7 @@ class CartItemCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(16.w),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildImageSection(context),
             SizedBox(width: 12.w),
@@ -78,8 +79,8 @@ class CartItemCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: 100.w,
-          height: 100.h,
+          width: 140.w,
+          height: 140.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
             color: Colors.grey[100],
@@ -88,8 +89,8 @@ class CartItemCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
             child: AppCachedNetworkImage(
               imageUrl: item.mealImageUrl,
-              width: 80.w,
-              height: 80.h,
+              width: 140.w,
+              height: 140.h,
               fit: BoxFit.cover,
             ),
           ),
@@ -103,17 +104,13 @@ class CartItemCard extends StatelessWidget {
               onRemove();
             },
             child: Container(
-              width: 30.w,
-              height: 30.h,
+              width: 35.w,
+              height: 35.h,
               decoration: BoxDecoration(
                 color: Colors.red.withValues(alpha: 0.8),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.delete_outline,
-                color: Colors.white,
-                size: 20.sp,
-              ),
+              child: Icon(Icons.delete, color: Colors.white, size: 25.sp),
             ),
           ),
         ),
@@ -123,29 +120,35 @@ class CartItemCard extends StatelessWidget {
 
   Widget _buildDetailsSection(CartItemModel currentItem) {
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            currentItem.mealName,
-            style: TextStyles.textViewBold16.copyWith(
-              color: AppColors.textColorLight,
+      child: SizedBox(
+        height: 140.h,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              currentItem.mealName,
+              style: TextStyles.textViewBold16.copyWith(
+                color: AppColors.textColorLight,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: 4.h),
-          if (_hasNonEmptyOptions(currentItem)) ...[
-            _buildCustomizationDetails(currentItem),
-            SizedBox(height: 4.h),
+
+            if (_hasNonEmptyOptions(currentItem)) ...[
+              SizedBox(height: 8.h),
+              _buildCustomizationDetails(currentItem),
+            ],
+
+            const Spacer(),
+
+            Text(
+              '${currentItem.totalPrice.toStringAsFixed(0)} \$',
+              style: TextStyles.textViewBold16.copyWith(
+                color: AppColors.textColorLight,
+              ),
+            ),
           ],
-          Text(
-            '${currentItem.totalPrice.toStringAsFixed(0)} \$',
-            style: TextStyles.textViewBold16.copyWith(
-              color: AppColors.textColorLight,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -256,13 +259,30 @@ class CartItemCard extends StatelessWidget {
         width: 28.w,
         height: 28.h,
         decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.primary.withValues(alpha: 0.1),
+              AppColors.primary.withValues(alpha: 0.2),
+              AppColors.primary.withValues(alpha: 0.4),
+              AppColors.primary,
+            ],
+          ),
           color: onTap != null ? AppColors.primary : Colors.grey[300],
           borderRadius: BorderRadius.circular(6.r),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.4),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Icon(
           icon,
           color: onTap != null ? Colors.white : Colors.grey[600],
-          size: 14.sp,
+          size: 20.sp,
         ),
       ),
     );

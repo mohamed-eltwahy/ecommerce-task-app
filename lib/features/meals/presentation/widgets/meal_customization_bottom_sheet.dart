@@ -204,10 +204,27 @@ class _MealCustomizationBottomSheetState
         width: 40.w,
         height: 40.h,
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.primary.withValues(alpha: 0.2),
+              AppColors.primary.withValues(alpha: 0.4),
+              AppColors.primary,
+            ],
+          ),
           borderRadius: BorderRadius.circular(8.r),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.4),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
-        child: Icon(icon, color: Colors.white, size: 18.sp),
+        child: Center(
+          child: Icon(icon, color: Colors.white, size: 18.sp),
+        ),
       ),
     );
   }

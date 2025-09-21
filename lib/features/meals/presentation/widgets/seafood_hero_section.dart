@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/config/app_images.dart';
@@ -12,7 +11,7 @@ class SeafoodHeroSection extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         height: 280.h,
-        margin: EdgeInsets.only(bottom: 80.h),
+        margin: EdgeInsets.only(bottom: 40.h),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -29,7 +28,7 @@ class SeafoodHeroSection extends StatelessWidget {
 
   Widget _buildBackgroundImage() {
     return SizedBox(
-      height: 320.h,
+      height: 250.h,
       width: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.only(
@@ -46,7 +45,7 @@ class SeafoodHeroSection extends StatelessWidget {
 
   Widget _buildOverlay() {
     return SizedBox(
-      height: 320.h,
+      height: 250.h,
       width: double.infinity,
       child: ClipRRect(
         borderRadius: BorderRadius.only(
@@ -55,7 +54,7 @@ class SeafoodHeroSection extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.primary.withValues(alpha: 0.5),
+            color: const Color(0xFF6B73FF).withValues(alpha: 0.4),
           ),
         ),
       ),
@@ -143,7 +142,7 @@ class SeafoodHeroSection extends StatelessWidget {
 
   Widget _buildCircularFeaturedItem() {
     return Positioned(
-      bottom: -80.h,
+      bottom: -40.h,
       left: 0,
       right: 0,
       child: Center(
@@ -204,7 +203,6 @@ class SeafoodHeroSection extends StatelessWidget {
             child: ClipOval(
               child: Container(
                 padding: EdgeInsets.all(2.w),
-
                 child: ClipOval(
                   child: AppCachedNetworkImage(
                     imageUrl: AppImages.seafoodcurvedimag,

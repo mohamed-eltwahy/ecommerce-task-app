@@ -10,7 +10,7 @@ class MealsListSection extends StatefulWidget {
   const MealsListSection({
     super.key,
     required this.meals,
-    this.animationDelayMs = 150, // Default delay between items
+    this.animationDelayMs = 150,
   });
 
   @override
@@ -75,8 +75,8 @@ class _MealsListSectionState extends State<MealsListSection>
     return SliverPadding(
       padding: EdgeInsets.all(16.w),
       sliver: SliverGrid(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200.w, // Maximum width for each card
           childAspectRatio: 0.65,
           crossAxisSpacing: 12.w,
           mainAxisSpacing: 16.h,
@@ -92,7 +92,10 @@ class _MealsListSectionState extends State<MealsListSection>
                   offset: Offset(0, 50 * (1 - _itemAnimations[index].value)),
                   child: Opacity(
                     opacity: _itemAnimations[index].value.clamp(0.0, 1.0),
-                    child: GridMealCard(meal: meal, onFavoriteTap: () {}),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: GridMealCard(meal: meal, onFavoriteTap: () {}),
+                    ),
                   ),
                 ),
               );

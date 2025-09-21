@@ -15,6 +15,7 @@ class AppIcons {
   static const String gallery = '${_path}gallery.svg';
   static const String file = '${_path}file.svg';
   static const String basket = '${_path}basket.png';
+  static const String filter = '${_path}filter.png';
 
 
   // Method to render SVG as a widget

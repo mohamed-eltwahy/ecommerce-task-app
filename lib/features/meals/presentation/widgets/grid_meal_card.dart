@@ -18,6 +18,7 @@ class GridMealCard extends StatelessWidget {
         _showCustomizationBottomSheet(context);
       },
       child: Container(
+        width: double.infinity,
         height: 180.h,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
@@ -43,33 +44,39 @@ class GridMealCard extends StatelessWidget {
   }
 
   Widget _buildImageSection() {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16.r),
-            topRight: Radius.circular(16.r),
-          ),
-          child: AppCachedNetworkImage(
-            imageUrl: meal.imageUrl,
-            fit: BoxFit.cover,
-            height: 90.h,
-            width: double.infinity,
-          ),
-        ),
-        Positioned(
-          top: 8.h,
-          right: 8.w,
-          child: GestureDetector(
-            onTap: onFavoriteTap,
-            child: Icon(
-              Icons.favorite_outline,
-              color: AppColors.primary,
-              size: 25.sp,
+    return SizedBox(
+      height: 120.h,
+      width: double.infinity,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.r),
+                topRight: Radius.circular(16.r),
+              ),
+              child: AppCachedNetworkImage(
+                imageUrl: meal.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            top: 8.h,
+            right: 8.w,
+            child: GestureDetector(
+              onTap: onFavoriteTap,
+              child: Icon(
+                Icons.favorite,
+                color: AppColors.primary,
+                size: 25.sp,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -112,32 +119,35 @@ class GridMealCard extends StatelessWidget {
 
         SizedBox(height: 6.h),
 
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-          decoration: BoxDecoration(
-            color: AppColors.cardColorLight,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(16.r),
-              bottomRight: Radius.circular(16.r),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.08),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-                spreadRadius: 0,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: AppColors.cardColorLight,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16.r),
+                  bottomRight: Radius.circular(16.r),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.08),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                    spreadRadius: 0,
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(child: _buildPriceSection()),
-              SizedBox(width: 8.w),
-              _buildAddToCartButton(context),
-            ],
-          ),
+              child: _buildPriceSection(),
+            ),
+            Positioned(
+              right: 10,
+              top: -14.h,
+              child: _buildAddToCartButton(context),
+            ),
+          ],
         ),
       ],
     );
@@ -210,10 +220,7 @@ class GridMealCard extends StatelessWidget {
     MealCustomizationBottomSheet.show(
       context: context,
       meal: meal,
-      onAddToCart: (meal, selectedOptions, quantity, totalPrice) {
-        // This callback is now handled by the CartService in the bottom sheet
-        // but we can add additional logic here if needed
-      },
+      onAddToCart: (meal, selectedOptions, quantity, totalPrice) {},
     );
   }
 }

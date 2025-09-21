@@ -13,6 +13,7 @@ import '../widgets/seafood_hero_section.dart';
 import '../widgets/meals_loading_widget.dart';
 import '../widgets/meals_error_widget.dart';
 import '../widgets/meals_empty_widget.dart';
+import '../widgets/search_and_filter_section.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({super.key});
@@ -36,6 +37,15 @@ class MealsScreen extends StatelessWidget {
               return CustomScrollView(
                 slivers: [
                   const SeafoodHeroSection(),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 16.h,
+                      ),
+                      child: const SearchAndFilterSection(),
+                    ),
+                  ),
                   MealsListSection(meals: state.meals, animationDelayMs: 200),
                 ],
               );
